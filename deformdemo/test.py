@@ -270,16 +270,16 @@ def setUpModule():
         browser = Chrome()
 
     elif driver_name == "selenium_local_firefox":
-        from selenium.webdriver import Firefox
-
-        browser = Firefox()
-
         # from selenium.webdriver import Firefox
-        # from selenium.webdriver.firefox.options import Options
-        # options = Options()
-        # options.add_argument("-profile")
-        # options.add_argument('/home/trollfot/snap/firefox/common/tmp/seleniumprofile')
-        # browser = Firefox(options=options)
+
+        # browser = Firefox()
+
+        from selenium.webdriver import Firefox
+        from selenium.webdriver.firefox.options import Options
+        options = Options()
+        options.add_argument("-profile")
+        options.add_argument('/home/trollfot/snap/firefox/common/tmp/seleniumprofile')
+        browser = Firefox(options=options)
 
     elif driver_name == "selenium_container_chrome":
         from selenium_containers import start_chrome
@@ -3399,6 +3399,8 @@ class DelayedRichTextWidgetTests(Base, unittest.TestCase):
 
     def test_submit_filled(self):
         findcss(".tinymce-preload").click()
+
+
         time.sleep(0.5)
         browser.switch_to.frame(browser.find_element(By.TAG_NAME, "iframe"))
         findid("tinymce").click()
